@@ -1,0 +1,58 @@
+"""Static shop catalogue. Each product seeds the studio with a base color + idea."""
+
+PRODUCTS = [
+    {
+        "id": "classic-white",
+        "name": "Classic Crew",
+        "color": "#f4f4f8",
+        "price": 29,
+        "tagline": "Premium combed cotton. Your art, front and center.",
+        "suggestPrompt": "bold minimalist mountain range line art",
+        "suggestStyle": "minimal line art",
+    },
+    {
+        "id": "midnight-black",
+        "name": "Midnight Tee",
+        "color": "#0a0a0f",
+        "price": 32,
+        "tagline": "Deep black canvas that makes neon pop.",
+        "suggestPrompt": "glowing neon koi fish swimming through circuitry",
+        "suggestStyle": "synthwave neon",
+    },
+    {
+        "id": "electric-violet",
+        "name": "Electric Violet",
+        "color": "#7c5cff",
+        "price": 34,
+        "tagline": "A statement colour for statement designs.",
+        "suggestPrompt": "retro sunset with palm trees",
+        "suggestStyle": "vintage retro",
+    },
+    {
+        "id": "teal-rush",
+        "name": "Teal Rush",
+        "color": "#00bfa6",
+        "price": 30,
+        "tagline": "Fresh, vivid, impossible to ignore.",
+        "suggestPrompt": "abstract flowing geometric waves",
+        "suggestStyle": "abstract geometric",
+    },
+    {
+        "id": "coral-heat",
+        "name": "Coral Heat",
+        "color": "#ff5d73",
+        "price": 31,
+        "tagline": "Warm energy, built to be seen.",
+        "suggestPrompt": "fierce dragon wrapped in flames",
+        "suggestStyle": "vibrant modern streetwear",
+    },
+    {
+        "id": "anime-edition",
+        "name": "Anime Edition",
+        "color": "#1b1140",
+        "price": 35,
+        "tagline": "For the culture. Drop your hero on it.",
+        "suggestPrompt": "anime samurai under cherry blossoms",
+        "suggestStyle": "anime",
+    },
+]

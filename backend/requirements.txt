@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+openai
+pillow
+python-multipart
+python-dotenv
+langchain
+langchain-openai
+langchain-core
+pydantic

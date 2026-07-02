@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# generated + uploaded images (keep the folder, not its contents)
+backend/static/generated/*
+!backend/static/generated/.gitkeep
+
+# persisted gallery state
+backend/data/gallery.json
+
+# frontend
+frontend/node_modules/
+frontend/dist/
