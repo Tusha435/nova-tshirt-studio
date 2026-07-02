@@ -84,10 +84,10 @@ function Navbar({ onCart }) {
   return (
     <header className="fixed top-0 inset-x-0 z-40">
       <div className="max-w-7xl mx-auto px-5 mt-3">
-        <div className="glass border border-white/10 rounded-3xl h-16 px-4 flex items-center justify-between backdrop-blur-xl shadow-[0_18px_80px_rgba(0,0,0,0.25)]">
+        <div className="glass border border-ink/10 rounded-3xl h-16 px-4 flex items-center justify-between backdrop-blur-xl shadow-[0_18px_60px_rgba(90,70,190,0.18)]">
           <button
             onClick={() => (onHome ? scrollToId("top") : navigate("/"))}
-            className="text-2xl font-black tracking-[0.18em] text-white"
+            className="text-2xl font-black tracking-[0.18em] text-ink"
             aria-label="Go to home"
           >
             <span className="neon-text neon-flicker">NOVA</span>
@@ -98,14 +98,14 @@ function Navbar({ onCart }) {
               <button
                 key={a.id}
                 onClick={() => go(a.id)}
-                className="px-4 py-2 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition"
+                className="px-4 py-2 rounded-full text-sm text-ink/70 hover:text-ink hover:bg-ink/10 transition"
               >
                 {a.label}
               </button>
             ))}
             <button
               onClick={() => navigate("/gallery")}
-              className="px-4 py-2 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition"
+              className="px-4 py-2 rounded-full text-sm text-ink/70 hover:text-ink hover:bg-ink/10 transition"
             >
               Gallery
             </button>
@@ -113,7 +113,7 @@ function Navbar({ onCart }) {
 
           <button
             onClick={onCart}
-            className="relative px-4 py-2 rounded-full bg-white/10 text-sm text-white transition hover:bg-white/15 shadow-[0_0_24px_rgba(124,92,255,0.16)]"
+            className="relative px-4 py-2 rounded-full bg-ink/10 text-sm text-ink transition hover:bg-ink/15 shadow-[0_0_24px_rgba(124,92,255,0.16)]"
             aria-label="Open cart"
           >
             🛍 Cart
@@ -131,20 +131,20 @@ function Navbar({ onCart }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 mt-10">
+    <footer className="border-t border-ink/10 mt-10">
       <div className="max-w-7xl mx-auto px-5 py-12 flex flex-col md:flex-row justify-between gap-8">
         <div>
           <div className="text-2xl font-extrabold neon-text mb-2">NOVA Studio</div>
-          <p className="text-white/45 max-w-lg text-sm">
+          <p className="text-ink/45 max-w-lg text-sm">
             AI-designed apparel, 3D live preview, and instant checkout in a sleek neon experience.
           </p>
         </div>
         <div className="text-right">
-          <p className="text-white/35 text-sm">OpenAI image + vision · LangChain · React Three Fiber</p>
-          <p className="text-white/25 text-xs mt-4">Built for futuristic shopping and creative product discovery.</p>
+          <p className="text-ink/35 text-sm">OpenAI image + vision · LangChain · React Three Fiber</p>
+          <p className="text-ink/25 text-xs mt-4">Built for futuristic shopping and creative product discovery.</p>
         </div>
       </div>
-      <div className="text-center text-white/25 text-xs pb-8">© {new Date().getFullYear()} NOVA Studio — demo build.</div>
+      <div className="text-center text-ink/25 text-xs pb-8">© {new Date().getFullYear()} NOVA Studio — demo build.</div>
     </footer>
   );
 }
@@ -191,7 +191,7 @@ export default function App() {
 
   return (
     <SmoothScroll>
-      <div className="app-bg flex min-h-screen flex-col text-white">
+      <div className="app-bg flex min-h-screen flex-col text-ink">
         <CursorGlow />
         <SceneFX />
         <ScrollProgress />

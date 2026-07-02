@@ -24,7 +24,7 @@ export default function Checkout() {
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
           <div className="text-7xl mb-6">🎉</div>
           <h1 className="text-4xl font-bold mb-3">Order placed!</h1>
-          <p className="text-white/50 mb-8">
+          <p className="text-ink/50 mb-8">
             This is a demo checkout — no payment was taken. Your AI-designed tees are
             “on their way”.
           </p>
@@ -32,7 +32,7 @@ export default function Checkout() {
             <Link to="/studio" className="btn-neon px-6 py-3 rounded-xl">
               Design another →
             </Link>
-            <Link to="/" className="px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5">
+            <Link to="/" className="px-6 py-3 rounded-xl border border-ink/15 hover:bg-ink/5">
               Home
             </Link>
           </div>
@@ -94,18 +94,18 @@ export default function Checkout() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm truncate">{i.name}</div>
-                  <div className="text-white/40 text-xs">×{i.qty}</div>
+                  <div className="text-ink/40 text-xs">×{i.qty}</div>
                 </div>
                 <div className="text-sm">${i.price * i.qty}</div>
               </div>
             ))}
           </div>
-          <div className="border-t border-white/10 mt-5 pt-4 space-y-2 text-sm">
-            <div className="flex justify-between text-white/60">
+          <div className="border-t border-ink/10 mt-5 pt-4 space-y-2 text-sm">
+            <div className="flex justify-between text-ink/60">
               <span>Subtotal</span>
               <span>${subtotal}</span>
             </div>
-            <div className="flex justify-between text-white/60">
+            <div className="flex justify-between text-ink/60">
               <span>Shipping</span>
               <span>${shipping}</span>
             </div>

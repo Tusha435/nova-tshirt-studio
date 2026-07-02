@@ -54,7 +54,7 @@ export default function Gallery() {
       <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
         <div>
           <h1 className="text-4xl font-bold">Your Gallery</h1>
-          <p className="text-white/45 mt-2">
+          <p className="text-ink/45 mt-2">
             Browse every saved design and try-on from your NOVA session.
           </p>
         </div>
@@ -66,8 +66,8 @@ export default function Gallery() {
               onClick={() => setFilter(filterOption.key)}
               className={`rounded-full px-4 py-2 text-sm transition ${
                 filter === filterOption.key
-                  ? "bg-neon/25 border border-neon text-white"
-                  : "border border-white/10 text-white/60 hover:border-white/30"
+                  ? "bg-neon/25 border border-neon text-ink"
+                  : "border border-ink/10 text-ink/60 hover:border-ink/30"
               }`}
             >
               {filterOption.label}
@@ -77,7 +77,7 @@ export default function Gallery() {
       </div>
 
       {error && (
-        <div className="mb-6 rounded-3xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+        <div className="mb-6 rounded-3xl border border-rose-400/20 bg-rose-500/10  px-4 py-3 text-sm text-rose-700">
           {error}
         </div>
       )}
@@ -85,11 +85,11 @@ export default function Gallery() {
       {loading ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="h-80 rounded-[2rem] bg-white/5 animate-pulse" />
+            <div key={index} className="h-80 rounded-[2rem] bg-ink/5 animate-pulse" />
           ))}
         </div>
       ) : items.length === 0 ? (
-        <div className="glass rounded-[2rem] p-16 text-center text-white/40">
+        <div className="glass rounded-[2rem] p-16 text-center text-ink/40">
           No gallery items yet. Generate a design in the studio and it will appear here automatically.
         </div>
       ) : (
@@ -105,25 +105,25 @@ export default function Gallery() {
               <button
                 type="button"
                 onClick={() => setActiveItem(item)}
-                className="relative aspect-square w-full overflow-hidden bg-black/20"
+                className="relative aspect-square w-full overflow-hidden bg-ink/5"
               >
                 <img
                   src={item.url}
                   alt={item.prompt || "Saved item"}
                   className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                 />
-                <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white/70">
+                <span className="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-ink/70">
                   {item.kind === "pattern" ? "design" : "try-on"}
                 </span>
               </button>
 
               <div className="p-4">
-                <p className="text-sm text-white/50 line-clamp-2">{item.prompt || "No prompt available"}</p>
+                <p className="text-sm text-ink/50 line-clamp-2">{item.prompt || "No prompt available"}</p>
                 <div className="mt-4 flex gap-2">
                   {item.kind === "pattern" && (
                     <button
                       onClick={() => reuseDesign(item)}
-                      className="flex-1 rounded-2xl bg-white/10 px-3 py-2 text-xs text-white/80 hover:bg-white/15 transition"
+                      className="flex-1 rounded-2xl bg-ink/10 px-3 py-2 text-xs text-ink/80 hover:bg-ink/15 transition"
                     >
                       Use pattern
                     </button>
@@ -132,13 +132,13 @@ export default function Gallery() {
                     href={item.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex-1 rounded-2xl border border-white/10 px-3 py-2 text-center text-xs text-white/60 hover:border-white/30 transition"
+                    className="flex-1 rounded-2xl border border-ink/10 px-3 py-2 text-center text-xs text-ink/60 hover:border-ink/30 transition"
                   >
                     Open
                   </a>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="rounded-2xl bg-rose-500/10 px-3 py-2 text-xs text-rose-300/80 hover:bg-rose-500/15 transition"
+                    className="rounded-2xl bg-rose-500/10  px-3 py-2 text-xs text-rose-700/90 hover:bg-rose-500/15 transition"
                   >
                     Delete
                   </button>
@@ -152,13 +152,13 @@ export default function Gallery() {
       <AnimatePresence>
         {activeItem && (
           <motion.div
-            className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-4"
+            className="fixed inset-0 z-50 grid place-items-center bg-ink/40 backdrop-blur-sm p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="relative w-full max-w-3xl rounded-[2rem] bg-ink/95 border border-white/10 p-6"
+              className="relative w-full max-w-3xl rounded-[2rem] bg-ink/95 border border-ink/10 p-6"
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
@@ -166,20 +166,20 @@ export default function Gallery() {
               <button
                 type="button"
                 onClick={() => setActiveItem(null)}
-                className="absolute right-5 top-5 text-2xl text-white/60 hover:text-white"
+                className="absolute right-5 top-5 text-2xl text-ink/60 hover:text-ink"
                 aria-label="Close preview"
               >
                 ×
               </button>
               <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-                <div className="rounded-[1.75rem] overflow-hidden bg-black/20">
+                <div className="rounded-[1.75rem] overflow-hidden bg-ink/5">
                   <img src={activeItem.url} alt={activeItem.prompt || "Preview"} className="h-full w-full object-contain" />
                 </div>
                 <div className="space-y-4">
                   <div>
                     <div className="text-sm uppercase tracking-[0.3em] text-cyber/70">Preview</div>
                     <h2 className="mt-3 text-2xl font-semibold">{activeItem.kind === "pattern" ? "AI design" : "Try-on result"}</h2>
-                    <p className="mt-3 text-white/50">{activeItem.prompt || "No prompt available"}</p>
+                    <p className="mt-3 text-ink/50">{activeItem.prompt || "No prompt available"}</p>
                   </div>
                   {activeItem.kind === "pattern" && (
                     <button

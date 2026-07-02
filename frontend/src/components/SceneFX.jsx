@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
 const PALETTE = [
-  [124, 92, 255],
-  [0, 240, 255],
-  [255, 61, 240],
-  [182, 255, 61],
+  [109, 74, 255],
+  [0, 147, 184],
+  [224, 46, 196],
+  [113, 180, 10],
   [255, 77, 141],
-  [0, 191, 166],
+  [0, 155, 134],
 ];
 
 function rnd(a, b) { return Math.random() * (b - a) + a; }
@@ -114,7 +114,7 @@ class ShootingStar {
     const gd = ctx.createLinearGradient(tx, ty, this.x, this.y);
     gd.addColorStop(0, `rgba(${r},${g},${b},0)`);
     gd.addColorStop(0.55, `rgba(${r},${g},${b},${this.alpha * 0.42})`);
-    gd.addColorStop(1, `rgba(255,255,255,${this.alpha})`);
+    gd.addColorStop(1, `rgba(${r},${g},${b},${this.alpha})`);
     ctx.save();
     ctx.beginPath();
     ctx.moveTo(tx, ty);
@@ -125,7 +125,7 @@ class ShootingStar {
     ctx.stroke();
     ctx.beginPath();
     ctx.arc(this.x, this.y, 2.8, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,255,255,${this.alpha * 0.9})`;
+    ctx.fillStyle = `rgba(${r},${g},${b},${this.alpha * 0.9})`;
     ctx.fill();
     ctx.restore();
   }
@@ -200,7 +200,7 @@ export default function SceneFX() {
     <canvas
       ref={cvs}
       className="fixed inset-0 z-0 pointer-events-none"
-      style={{ opacity: 0.68 }}
+      style={{ opacity: 0.45 }}
     />
   );
 }

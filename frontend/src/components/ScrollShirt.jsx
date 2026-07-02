@@ -104,7 +104,7 @@ function Shirt({ color, patternUrl, progress, velocity }) {
         <meshStandardMaterial color={color} roughness={0.84} metalness={0.06} />
       </mesh>
       {patternUrl && (
-        <Suspense fallback={<Html center className="text-sm text-white/70">Loading design…</Html>}>
+        <Suspense fallback={<Html center className="text-sm text-ink/70">Loading design…</Html>}>
           <Decal url={patternUrl} progress={progress} />
         </Suspense>
       )}
@@ -122,7 +122,7 @@ export default function ScrollShirt({ color = "#7c5cff", patternUrl = null, prog
       <pointLight position={[0, 4.5, 2]} intensity={0.9} color="#ff3df0" />
 
       <Float rotationIntensity={0.42} floatIntensity={0.18} floatingRange={[0.1, 0.16]}>
-        <Suspense fallback={<Html center className="text-sm text-white/70">Loading shirt…</Html>}>
+        <Suspense fallback={<Html center className="text-sm text-ink/70">Loading shirt…</Html>}>
           <Shirt color={color} patternUrl={patternUrl} progress={progress} velocity={velocity} />
         </Suspense>
       </Float>

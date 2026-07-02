@@ -51,9 +51,9 @@ export default function SectionNav() {
                   transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 />
               )}
-              <span className={`block h-2 w-2 rounded-full ${isActive ? "bg-white" : "bg-white/25"} transition`} />
+              <span className={`block h-2 w-2 rounded-full ${isActive ? "bg-white" : "bg-ink/25"} transition`} />
             </div>
-            <span className={`text-xs uppercase tracking-[0.3em] transition ${isActive ? "text-white" : "text-white/50 group-hover:text-white/80"}`}>
+            <span className={`text-xs uppercase tracking-[0.3em] transition ${isActive ? "text-ink" : "text-ink/50 group-hover:text-ink/80"}`}>
               {section.label}
             </span>
           </button>

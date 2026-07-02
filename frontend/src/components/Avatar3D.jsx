@@ -12,7 +12,7 @@ function LoadingOverlay() {
   const { progress } = useProgress();
   return (
     <Html center>
-      <div className="rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-white/80 backdrop-blur-xl">
+      <div className="rounded-3xl border border-ink/10 bg-ink/5 px-5 py-4 text-sm text-ink/80 backdrop-blur-xl">
         Loading avatar — {Math.round(progress)}%
       </div>
     </Html>
