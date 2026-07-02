@@ -1,6 +1,7 @@
 import React, { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { Environment, ContactShadows, Float, Html } from "@react-three/drei";
+import { ContactShadows, Float, Html } from "@react-three/drei";
+import SafeEnvironment from "./SafeEnvironment.jsx";
 import * as THREE from "three";
 
 function makeBody() {
@@ -127,7 +128,7 @@ export default function ScrollShirt({ color = "#7c5cff", patternUrl = null, prog
       </Float>
 
       <ContactShadows position={[0, -2.3, 0]} opacity={0.45} scale={13} blur={2.5} far={5} />
-      <Environment preset="dawn" />
+      <SafeEnvironment preset="dawn" />
     </Canvas>
   );
 }

@@ -90,7 +90,7 @@ function Hero() {
             <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.32em] text-cyber/75 mb-7">
               ✦ AI-powered design studio
             </div>
-            <h1 className="text-5xl md:text-7xl xl:text-8xl font-black leading-[0.92] tracking-tight">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-black leading-[1.06] tracking-tight">
               <CharReveal text="Wear your imagination." delay={0.1} /><br />
               <GlitchText text="See it move." className="neon-text" />
             </h1>
@@ -200,7 +200,7 @@ function HowItWorks() {
       <VelocitySkew>
         <div className="text-center mb-14">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">How it works</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="From prompt to print-ready apparel" />
           </h2>
         </div>
@@ -251,7 +251,7 @@ function DesignSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Design studio</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Create your next signature tee" />
           </h2>
         </div>
@@ -409,7 +409,7 @@ function TryOnSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Try it on</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Visualize the final look" />
           </h2>
         </div>
@@ -523,7 +523,7 @@ function ShopSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Shop the drop</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Pick your canvas" />
           </h2>
         </div>

@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         display: ["Space Grotesk", "system-ui", "sans-serif"],
+        hero: ["Unbounded", "Space Grotesk", "system-ui", "sans-serif"],
       },
       colors: {
         ink: "#07060e",

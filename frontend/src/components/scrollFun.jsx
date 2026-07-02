@@ -203,19 +203,32 @@ export function CharReveal({ text, className = "", delay = 0, as: Tag = "span" }
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
+  // Group characters by word so lines only break between words,
+  // while each character still floats in individually.
+  let charIndex = 0;
   return (
     <Tag ref={ref} className={className} style={{ display: "inline", perspective: "600px" }}>
-      {[...text].map((char, i) => (
-        <motion.span
-          key={i}
-          style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : "normal" }}
-          initial={{ opacity: 0, y: 28, rotateX: -55 }}
-          animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-          transition={{ delay: delay + i * 0.026, duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {char}
-        </motion.span>
-      ))}
+      {text.split(" ").map((word, w) => {
+        const start = charIndex;
+        charIndex += word.length + 1;
+        return (
+          <React.Fragment key={w}>
+            <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+              {[...word].map((char, i) => (
+                <motion.span
+                  key={i}
+                  style={{ display: "inline-block" }}
+                  initial={{ opacity: 0, y: 28, rotateX: -55 }}
+                  animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                  transition={{ delay: delay + (start + i) * 0.026, duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>{" "}
+          </React.Fragment>
+        );
+      })}
     </Tag>
   );
 }

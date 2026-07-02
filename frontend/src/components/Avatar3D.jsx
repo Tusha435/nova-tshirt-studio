@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, Suspense } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
-import { Environment, ContactShadows, PresentationControls, Html, useProgress } from "@react-three/drei";
+import { ContactShadows, PresentationControls, Html, useProgress } from "@react-three/drei";
+import SafeEnvironment from "./SafeEnvironment.jsx";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -110,7 +111,7 @@ export default function Avatar3D({ patternUrl, shirtColor = "#7c5cff" }) {
       </PresentationControls>
 
       <ContactShadows position={[0, -1.45, 0]} opacity={0.55} scale={6} blur={2.8} far={4} />
-      <Environment preset="studio" />
+      <SafeEnvironment preset="studio" />
     </Canvas>
   );
 }
