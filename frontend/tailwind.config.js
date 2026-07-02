@@ -5,24 +5,26 @@ export default {
     extend: {
       fontFamily: {
         display: ["Space Grotesk", "system-ui", "sans-serif"],
+        hero: ["Unbounded", "Space Grotesk", "system-ui", "sans-serif"],
       },
       colors: {
-        ink: "#07060e",
-        neon: "#7c5cff",
-        cyber: "#00f0ff",
-        magenta: "#ff3df0",
-        lime: "#b6ff3d",
+        ink: "#191536",
+        paper: "#f6f5fe",
+        neon: "#6d4aff",
+        cyber: "#0093b8",
+        magenta: "#e02ec4",
+        lime: "#71b40a",
         hot: "#ff4d8d",
       },
       boxShadow: {
-        glow: "0 24px 80px rgba(124, 92, 255, 0.28)",
-        deep: "0 30px 110px rgba(0, 0, 0, 0.24)",
+        glow: "0 24px 70px rgba(109, 74, 255, 0.24)",
+        deep: "0 30px 90px rgba(90, 70, 190, 0.14)",
       },
       backgroundImage: {
         "hero-glow":
-          "radial-gradient(circle at top, rgba(124,92,255,0.18), transparent 28%), radial-gradient(circle at 85% 15%, rgba(0,240,255,0.16), transparent 24%)",
+          "radial-gradient(circle at top, rgba(109,74,255,0.16), transparent 28%), radial-gradient(circle at 85% 15%, rgba(0,190,235,0.14), transparent 24%)",
         "glass-panel":
-          "linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
+          "linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6))",
       },
       keyframes: {
         float: {

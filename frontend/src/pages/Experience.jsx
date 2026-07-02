@@ -83,19 +83,19 @@ function Hero() {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/70 to-transparent pointer-events-none" />
 
         <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
           <motion.div style={{ y: headlineY, opacity: headlineOpacity }} className="max-w-xl">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.32em] text-cyber/75 mb-7">
+            <div className="inline-flex items-center gap-3 rounded-full border border-ink/10 bg-ink/5 px-4 py-2 text-xs uppercase tracking-[0.32em] text-cyber/75 mb-7">
               ✦ AI-powered design studio
             </div>
-            <h1 className="text-5xl md:text-7xl xl:text-8xl font-black leading-[0.92] tracking-tight">
+            <h1 className="text-4xl md:text-6xl xl:text-7xl font-black leading-[1.06] tracking-tight">
               <CharReveal text="Wear your imagination." delay={0.1} /><br />
               <GlitchText text="See it move." className="neon-text" />
             </h1>
-            <p className="text-white/55 mt-8 text-lg max-w-xl">
-              <SplitText text="Describe any idea, spin it onto a 3D tee, visualize it on a model, then checkout the future of custom apparel." />
+            <p className="text-ink/55 mt-8 text-lg max-w-xl">
+              <SplitText text="Describe any idea, watch it drape onto photoreal knit fabric in 3D, try it on yourself with your camera, then check out the future of custom apparel." />
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Magnetic href="#design" className="btn-neon px-8 py-3.5 rounded-xl text-sm inline-block">
@@ -118,11 +118,11 @@ function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + i * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ scale: 1.08, y: -4 }}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+                  className="rounded-3xl border border-ink/10 bg-ink/5 p-6 backdrop-blur-sm"
                   style={{ transformPerspective: 600 }}
                 >
                   <div className="text-3xl font-bold grad-text">{stat.value}</div>
-                  <p className="text-white/40 text-sm mt-2">{stat.label}</p>
+                  <p className="text-ink/40 text-sm mt-2">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -130,12 +130,12 @@ function Hero() {
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 text-sm flex flex-col items-center gap-3"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ink/40 text-sm flex flex-col items-center gap-3"
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.6 }}
         >
           <span>scroll to unlock</span>
-          <span className="h-9 w-5 rounded-full border border-white/20 flex items-start justify-center pt-1.5">
+          <span className="h-9 w-5 rounded-full border border-ink/20 flex items-start justify-center pt-1.5">
             <span className="block h-2 w-2 rounded-full bg-cyber" />
           </span>
         </motion.div>
@@ -160,7 +160,7 @@ const STEPS = [
   {
     number: "03",
     title: "See it worn",
-    description: "Try it on a model or upload your photo to preview the finished look.",
+    description: "Try it on a rigged 3D model, or use your photo or camera for a real-world preview with a before/after slider.",
     icon: "📸",
   },
 ];
@@ -178,14 +178,14 @@ const MARQUEE = [
 
 function StatsTicker() {
   return (
-    <div className="relative overflow-hidden border-y border-white/8 py-5 my-2">
-      <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#07060e] to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#07060e] to-transparent pointer-events-none" />
+    <div className="relative overflow-hidden border-y border-ink/8 py-5 my-2">
+      <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#f6f5fe] to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#f6f5fe] to-transparent pointer-events-none" />
       <div className="ticker-inner flex gap-14 whitespace-nowrap">
         {[...MARQUEE, ...MARQUEE].map((item, i) => (
           <div key={i} className="inline-flex items-center gap-5 flex-shrink-0">
             <span className="text-xl font-black grad-text">{item.value}</span>
-            <span className="text-white/35 text-xs uppercase tracking-[0.28em]">{item.label}</span>
+            <span className="text-ink/35 text-xs uppercase tracking-[0.28em]">{item.label}</span>
             <span className="text-violet-500/40 text-sm">✦</span>
           </div>
         ))}
@@ -200,7 +200,7 @@ function HowItWorks() {
       <VelocitySkew>
         <div className="text-center mb-14">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">How it works</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="From prompt to print-ready apparel" />
           </h2>
         </div>
@@ -212,7 +212,7 @@ function HowItWorks() {
               <div className="text-6xl mb-5 select-none">{step.icon}</div>
               <div className="text-cyber text-xs uppercase tracking-[0.32em] mb-3">{step.number}</div>
               <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
-              <p className="text-white/55 leading-relaxed">{step.description}</p>
+              <p className="text-ink/55 leading-relaxed">{step.description}</p>
             </Card3D>
           </Pop>
         ))}
@@ -251,7 +251,7 @@ function DesignSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Design studio</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Create your next signature tee" />
           </h2>
         </div>
@@ -262,7 +262,7 @@ function DesignSection() {
           <div className="glass holo rounded-[2.5rem] overflow-hidden min-h-[520px] relative">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(0,255,255,0.18),transparent_28%)] pointer-events-none" />
             <MiniShirtStage color={shirtColor} patternUrl={patternUrl} />
-            <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-3 rounded-full bg-black/30 px-4 py-3 backdrop-blur-xl">
+            <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-3 rounded-full bg-white/70 px-4 py-3 backdrop-blur-xl">
               {COLORS.map((color) => (
                 <button
                   key={color}
@@ -283,18 +283,18 @@ function DesignSection() {
         <Reveal delay={0.06}>
           <div className="glass holo rounded-[2.5rem] p-8 space-y-6">
             <div>
-              <label className="text-xs uppercase tracking-[0.35em] text-white/40">Prompt</label>
+              <label className="text-xs uppercase tracking-[0.35em] text-ink/40">Prompt</label>
               <textarea
                 rows="4"
                 value={prompt}
                 onChange={(event) => setDesign({ prompt: event.target.value })}
-                className="mt-3 w-full resize-none bg-white/5 border border-white/10 focus:border-cyber focus:ring-cyber/20"
+                className="mt-3 w-full resize-none bg-ink/5 border border-ink/10 focus:border-cyber focus:ring-cyber/20"
                 placeholder="e.g. glowing koi fish in a neon circuit city"
               />
             </div>
 
             <div>
-              <label className="text-xs uppercase tracking-[0.35em] text-white/40">Style</label>
+              <label className="text-xs uppercase tracking-[0.35em] text-ink/40">Style</label>
               <div className="mt-3 flex flex-wrap gap-2">
                 {STYLES.map((option) => (
                   <button
@@ -302,8 +302,8 @@ function DesignSection() {
                     onClick={() => setDesign({ style: option })}
                     className={`px-4 py-2 rounded-full border text-sm transition ${
                       style === option
-                        ? "bg-neon/25 border-neon text-white"
-                        : "border-white/10 text-white/60 hover:border-white/30"
+                        ? "bg-neon/25 border-neon text-ink"
+                        : "border-ink/10 text-ink/60 hover:border-ink/30"
                     }`}
                   >
                     {option}
@@ -321,16 +321,16 @@ function DesignSection() {
             </button>
 
             {error && (
-              <div className="rounded-3xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+              <div className="rounded-3xl border border-rose-400/20 bg-rose-500/10  px-4 py-3 text-sm text-rose-700">
                 {error}
               </div>
             )}
 
             {patternUrl && (
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+              <div className="rounded-3xl border border-ink/10 bg-ink/5 p-4">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-sm text-white/50">Latest pattern</p>
+                    <p className="text-sm text-ink/50">Latest pattern</p>
                     <p className="font-semibold">Ready to preview and order</p>
                   </div>
                   <button
@@ -364,24 +364,122 @@ function DesignSection() {
 
 function MiniShirtStage({ color, patternUrl }) {
   return (
-    <div className="relative h-full">
-      <MiniShirt color={color} />
-      {patternUrl && (
-        <div className="pointer-events-none absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 opacity-90">
-          <img src={patternUrl} alt="Pattern preview" className="w-full" />
+    <div className="absolute inset-0">
+      <MiniShirt color={color} patternUrl={patternUrl} />
+    </div>
+  );
+}
+
+function CompareSlider({ before, after }) {
+  const [pos, setPos] = useState(55);
+  const boxRef = useRef();
+
+  const move = (clientX) => {
+    const rect = boxRef.current.getBoundingClientRect();
+    setPos(Math.min(96, Math.max(4, ((clientX - rect.left) / rect.width) * 100)));
+  };
+
+  return (
+    <div
+      ref={boxRef}
+      className="relative w-full select-none overflow-hidden rounded-3xl bg-ink/5 cursor-ew-resize touch-none"
+      style={{ aspectRatio: "3 / 4" }}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        move(e.clientX);
+      }}
+      onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
+    >
+      <img src={before} alt="Original photo" draggable="false" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+        <img src={after} alt="Try-on result" draggable="false" className="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div className="absolute inset-y-0 pointer-events-none" style={{ left: `${pos}%` }}>
+        <div className="absolute inset-y-0 -ml-px w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.4)]" />
+        <div className="absolute top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 grid place-items-center rounded-full bg-white text-ink text-base font-bold shadow-lg">
+          ⇆
         </div>
-      )}
+      </div>
+      <span className="absolute left-3 top-3 rounded-full bg-white/85 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-ink/70">
+        You
+      </span>
+      <span className="absolute right-3 top-3 rounded-full bg-white/85 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-ink/70">
+        With design
+      </span>
+    </div>
+  );
+}
+
+function CameraCapture({ onCapture, onClose }) {
+  const videoRef = useRef();
+  const streamRef = useRef();
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    navigator.mediaDevices
+      ?.getUserMedia({ video: { facingMode: "user" } })
+      .then((stream) => {
+        if (cancelled) {
+          stream.getTracks().forEach((t) => t.stop());
+          return;
+        }
+        streamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          videoRef.current.play();
+        }
+      })
+      .catch(() => setError("Camera unavailable — check browser permissions."));
+    return () => {
+      cancelled = true;
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+    };
+  }, []);
+
+  const capture = () => {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+    canvas.toBlob((blob) => {
+      if (blob) onCapture(new File([blob], "camera-capture.png", { type: "image/png" }));
+      onClose();
+    }, "image/png");
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="overflow-hidden rounded-3xl bg-ink/5 min-h-[14rem] grid place-items-center">
+        {error ? (
+          <span className="p-6 text-sm text-rose-700">{error}</span>
+        ) : (
+          <video ref={videoRef} playsInline muted className="w-full -scale-x-100" />
+        )}
+      </div>
+      <div className="flex gap-3">
+        <button onClick={capture} disabled={!!error} className="btn-neon flex-1 rounded-xl py-3 text-sm">
+          Capture
+        </button>
+        <button onClick={onClose} className="btn-ghost flex-1 rounded-xl py-3 text-sm">
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
 
 function TryOnSection() {
-  const { patternUrl, shirtColor, prompt } = useStore();
+  const { patternUrl, shirtColor } = useStore();
   const [mode, setMode] = useState("avatar");
   const [photoUrl, setPhotoUrl] = useState(null);
   const [resultUrl, setResultUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const fileInput = useRef();
 
   async function handleUpload(file) {
@@ -409,15 +507,19 @@ function TryOnSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Try it on</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Visualize the final look" />
           </h2>
+          <p className="text-ink/50 mt-5 max-w-2xl mx-auto">
+            Spin the rigged 3D model, or step in yourself — upload a photo or use your camera and
+            compare before and after with the drag slider.
+          </p>
         </div>
       </Reveal>
 
       <Reveal>
         <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-full bg-white/5 p-1">
+          <div className="inline-flex rounded-full bg-ink/5 p-1">
             {[
               { key: "avatar", label: "3D Model" },
               { key: "photo", label: "Your Photo" },
@@ -426,7 +528,7 @@ function TryOnSection() {
                 key={tab.key}
                 onClick={() => setMode(tab.key)}
                 className={`px-6 py-3 rounded-full text-sm transition ${
-                  mode === tab.key ? "btn-neon" : "text-white/55 hover:text-white"
+                  mode === tab.key ? "btn-neon" : "text-ink/55 hover:text-ink"
                 }`}
               >
                 {tab.label}
@@ -438,57 +540,115 @@ function TryOnSection() {
 
       <Reveal delay={0.08}>
         {mode === "avatar" ? (
-          <div className="glass holo rounded-[2.5rem] overflow-hidden min-h-[62vh] relative">
-            <Avatar3D patternUrl={patternUrl} shirtColor={shirtColor} />
-            <div className="absolute bottom-5 left-5 rounded-3xl border border-white/10 bg-black/30 px-4 py-2 text-sm text-white/70">
-              Drag to rotate the rigged model
+          <div className="glass holo rounded-[2.5rem] overflow-hidden h-[62vh] min-h-[540px] relative">
+            <div className="absolute inset-0">
+              <Avatar3D patternUrl={patternUrl} shirtColor={shirtColor} />
+            </div>
+            <div className="absolute bottom-5 left-5 rounded-3xl border border-ink/10 bg-white/70 px-4 py-2 text-sm text-ink/70">
+              Drag to rotate · studio lighting · knit fabric
             </div>
           </div>
         ) : (
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="glass holo rounded-[2.5rem] p-7">
-              <div className="mb-5 text-sm text-white/40">Upload a selfie and see the pattern on you.</div>
-              <div className="mb-6 rounded-3xl bg-black/20 min-h-[14rem] grid place-items-center">
-                {photoUrl ? (
-                  <img src={photoUrl} alt="upload preview" className="max-h-80 object-contain" />
-                ) : (
-                  <span className="text-white/30">Upload a photo</span>
-                )}
+              <div className="mb-5 text-sm text-ink/40">
+                Drop a photo, browse, or use your camera. Front-facing, good light works best.
               </div>
-              <input
-                ref={fileInput}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(event) => handleUpload(event.target.files?.[0])}
-              />
-              <button
-                onClick={() => fileInput.current?.click()}
-                disabled={!patternUrl}
-                className="btn-neon w-full py-3.5 rounded-xl"
-              >
-                {loading ? "Rendering…" : "Upload photo"}
-              </button>
+
+              {cameraOpen ? (
+                <CameraCapture onCapture={handleUpload} onClose={() => setCameraOpen(false)} />
+              ) : (
+                <>
+                  <div
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setDragging(true);
+                    }}
+                    onDragLeave={() => setDragging(false)}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setDragging(false);
+                      handleUpload(e.dataTransfer.files?.[0]);
+                    }}
+                    onClick={() => fileInput.current?.click()}
+                    className={`mb-6 grid min-h-[14rem] cursor-pointer place-items-center rounded-3xl border-2 border-dashed transition ${
+                      dragging ? "border-neon bg-neon/10" : "border-ink/15 bg-ink/5 hover:border-neon/60"
+                    }`}
+                  >
+                    {photoUrl ? (
+                      <img src={photoUrl} alt="upload preview" className="max-h-72 rounded-2xl object-contain p-2" />
+                    ) : (
+                      <div className="p-8 text-center text-ink/40">
+                        <div className="mb-2 text-3xl">🖼️</div>
+                        <div className="text-sm">
+                          Drag &amp; drop your photo here
+                          <br />
+                          or <span className="text-neon font-semibold">browse files</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    ref={fileInput}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(event) => handleUpload(event.target.files?.[0])}
+                  />
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => fileInput.current?.click()}
+                      disabled={!patternUrl || loading}
+                      className="btn-neon flex-1 rounded-xl py-3.5 text-sm"
+                    >
+                      {loading ? "Rendering…" : photoUrl ? "Change photo" : "Upload photo"}
+                    </button>
+                    <button
+                      onClick={() => setCameraOpen(true)}
+                      disabled={!patternUrl || loading}
+                      className="btn-ghost flex-1 rounded-xl py-3.5 text-sm disabled:opacity-45"
+                    >
+                      📷 Use camera
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {!patternUrl && (
+                <p className="mt-4 text-xs text-ink/40">
+                  Generate a design in the studio above to unlock the try-on.
+                </p>
+              )}
               {error && (
-                <div className="mt-4 rounded-3xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+                <div className="mt-4 rounded-3xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-700">
                   {error}
                 </div>
               )}
             </div>
+
             <div className="glass holo rounded-[2.5rem] p-7">
-              <div className="mb-5 text-sm text-white/40">Result</div>
-              <div className="rounded-3xl bg-black/20 min-h-[22rem] grid place-items-center overflow-hidden">
-                {loading ? (
-                  <div className="text-white/50">
-                    <div className="mb-4 h-10 w-10 rounded-full border-2 border-cyber/30 border-t-cyber animate-spin mx-auto" />
-                    Rendering preview…
-                  </div>
-                ) : resultUrl ? (
-                  <img src={resultUrl} alt="Try-on result" className="max-h-96 object-contain" />
-                ) : (
-                  <span className="text-white/30">your result appears here</span>
-                )}
+              <div className="mb-5 flex items-center justify-between text-sm text-ink/40">
+                <span>Result</span>
+                {resultUrl && photoUrl && <span className="text-xs text-ink/35">drag the handle to compare</span>}
               </div>
+              {loading ? (
+                <div className="grid min-h-[22rem] place-items-center rounded-3xl bg-ink/5 text-ink/50">
+                  <div className="text-center">
+                    <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-2 border-neon/30 border-t-neon" />
+                    Draping your design…
+                  </div>
+                </div>
+              ) : resultUrl && photoUrl ? (
+                <CompareSlider before={photoUrl} after={resultUrl} />
+              ) : resultUrl ? (
+                <div className="grid min-h-[22rem] place-items-center overflow-hidden rounded-3xl bg-ink/5">
+                  <img src={resultUrl} alt="Try-on result" className="max-h-96 object-contain" />
+                </div>
+              ) : (
+                <div className="grid min-h-[22rem] place-items-center rounded-3xl bg-ink/5">
+                  <span className="text-ink/30">your result appears here</span>
+                </div>
+              )}
               {resultUrl && (
                 <a
                   href={resultUrl}
@@ -523,7 +683,7 @@ function ShopSection() {
       <Reveal>
         <div className="text-center mb-12">
           <div className="text-cyber text-sm uppercase tracking-[0.3em] mb-4">Shop the drop</div>
-          <h2 className="text-4xl md:text-6xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Pick your canvas" />
           </h2>
         </div>
@@ -532,7 +692,7 @@ function ShopSection() {
       {loading ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="glass holo rounded-[2rem] p-8 animate-pulse bg-slate-800/40 h-80" />
+            <div key={index} className="glass holo rounded-[2rem] p-8 animate-pulse bg-ink/10 h-80" />
           ))}
         </div>
       ) : (
@@ -552,17 +712,17 @@ function ShopSection() {
                   document.getElementById("design")?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                <div className="relative mb-5 overflow-hidden rounded-[1.8rem] bg-gradient-to-b from-white/10 to-white/5 h-56">
+                <div className="relative mb-5 overflow-hidden rounded-[1.8rem] bg-gradient-to-b from-ink/10 to-ink/5 h-56">
                   <MiniShirt color={product.color} />
-                  <span className="absolute left-4 top-4 rounded-full bg-black/40 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-white/60">
+                  <span className="absolute left-4 top-4 rounded-full bg-white/75 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-ink/60">
                     live
                   </span>
-                  <div className="absolute right-4 bottom-4 rounded-3xl bg-black/40 px-3 py-2 text-sm text-white/80">
+                  <div className="absolute right-4 bottom-4 rounded-3xl bg-white/75 px-3 py-2 text-sm text-ink/80">
                     ${product.price}
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{product.tagline}</p>
+                <p className="text-ink/50 text-sm leading-relaxed">{product.tagline}</p>
               </Card3D>
             </Pop>
           ))}
@@ -597,7 +757,7 @@ function ClosingCTA() {
             <GlitchText text="Design" className="neon-text" />{" "}
             the future of your wardrobe.
           </h2>
-          <p className="text-white/45 mb-8 max-w-sm mx-auto text-sm leading-relaxed">
+          <p className="text-ink/45 mb-8 max-w-sm mx-auto text-sm leading-relaxed">
             Every idea. Every color. Every drop. Yours.
           </p>
           <Magnetic href="#design" className="btn-neon px-10 py-4 rounded-3xl text-lg">
