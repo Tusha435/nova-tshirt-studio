@@ -95,7 +95,7 @@ function Hero() {
               <GlitchText text="See it move." className="neon-text" />
             </h1>
             <p className="text-ink/55 mt-8 text-lg max-w-xl">
-              <SplitText text="Describe any idea, spin it onto a 3D tee, visualize it on a model, then checkout the future of custom apparel." />
+              <SplitText text="Describe any idea, watch it drape onto photoreal knit fabric in 3D, try it on yourself with your camera, then check out the future of custom apparel." />
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Magnetic href="#design" className="btn-neon px-8 py-3.5 rounded-xl text-sm inline-block">
@@ -160,7 +160,7 @@ const STEPS = [
   {
     number: "03",
     title: "See it worn",
-    description: "Try it on a model or upload your photo to preview the finished look.",
+    description: "Try it on a rigged 3D model, or use your photo or camera for a real-world preview with a before/after slider.",
     icon: "📸",
   },
 ];
@@ -364,24 +364,122 @@ function DesignSection() {
 
 function MiniShirtStage({ color, patternUrl }) {
   return (
-    <div className="relative h-full">
-      <MiniShirt color={color} />
-      {patternUrl && (
-        <div className="pointer-events-none absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 opacity-90">
-          <img src={patternUrl} alt="Pattern preview" className="w-full" />
+    <div className="absolute inset-0">
+      <MiniShirt color={color} patternUrl={patternUrl} />
+    </div>
+  );
+}
+
+function CompareSlider({ before, after }) {
+  const [pos, setPos] = useState(55);
+  const boxRef = useRef();
+
+  const move = (clientX) => {
+    const rect = boxRef.current.getBoundingClientRect();
+    setPos(Math.min(96, Math.max(4, ((clientX - rect.left) / rect.width) * 100)));
+  };
+
+  return (
+    <div
+      ref={boxRef}
+      className="relative w-full select-none overflow-hidden rounded-3xl bg-ink/5 cursor-ew-resize touch-none"
+      style={{ aspectRatio: "3 / 4" }}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        move(e.clientX);
+      }}
+      onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
+    >
+      <img src={before} alt="Original photo" draggable="false" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+        <img src={after} alt="Try-on result" draggable="false" className="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div className="absolute inset-y-0 pointer-events-none" style={{ left: `${pos}%` }}>
+        <div className="absolute inset-y-0 -ml-px w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.4)]" />
+        <div className="absolute top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 grid place-items-center rounded-full bg-white text-ink text-base font-bold shadow-lg">
+          ⇆
         </div>
-      )}
+      </div>
+      <span className="absolute left-3 top-3 rounded-full bg-white/85 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-ink/70">
+        You
+      </span>
+      <span className="absolute right-3 top-3 rounded-full bg-white/85 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-ink/70">
+        With design
+      </span>
+    </div>
+  );
+}
+
+function CameraCapture({ onCapture, onClose }) {
+  const videoRef = useRef();
+  const streamRef = useRef();
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    navigator.mediaDevices
+      ?.getUserMedia({ video: { facingMode: "user" } })
+      .then((stream) => {
+        if (cancelled) {
+          stream.getTracks().forEach((t) => t.stop());
+          return;
+        }
+        streamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          videoRef.current.play();
+        }
+      })
+      .catch(() => setError("Camera unavailable — check browser permissions."));
+    return () => {
+      cancelled = true;
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+    };
+  }, []);
+
+  const capture = () => {
+    const video = videoRef.current;
+    if (!video || !video.videoWidth) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+    canvas.toBlob((blob) => {
+      if (blob) onCapture(new File([blob], "camera-capture.png", { type: "image/png" }));
+      onClose();
+    }, "image/png");
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="overflow-hidden rounded-3xl bg-ink/5 min-h-[14rem] grid place-items-center">
+        {error ? (
+          <span className="p-6 text-sm text-rose-700">{error}</span>
+        ) : (
+          <video ref={videoRef} playsInline muted className="w-full -scale-x-100" />
+        )}
+      </div>
+      <div className="flex gap-3">
+        <button onClick={capture} disabled={!!error} className="btn-neon flex-1 rounded-xl py-3 text-sm">
+          Capture
+        </button>
+        <button onClick={onClose} className="btn-ghost flex-1 rounded-xl py-3 text-sm">
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
 
 function TryOnSection() {
-  const { patternUrl, shirtColor, prompt } = useStore();
+  const { patternUrl, shirtColor } = useStore();
   const [mode, setMode] = useState("avatar");
   const [photoUrl, setPhotoUrl] = useState(null);
   const [resultUrl, setResultUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const fileInput = useRef();
 
   async function handleUpload(file) {
@@ -412,6 +510,10 @@ function TryOnSection() {
           <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             <SplitText text="Visualize the final look" />
           </h2>
+          <p className="text-ink/50 mt-5 max-w-2xl mx-auto">
+            Spin the rigged 3D model, or step in yourself — upload a photo or use your camera and
+            compare before and after with the drag slider.
+          </p>
         </div>
       </Reveal>
 
@@ -438,57 +540,115 @@ function TryOnSection() {
 
       <Reveal delay={0.08}>
         {mode === "avatar" ? (
-          <div className="glass holo rounded-[2.5rem] overflow-hidden min-h-[62vh] relative">
-            <Avatar3D patternUrl={patternUrl} shirtColor={shirtColor} />
+          <div className="glass holo rounded-[2.5rem] overflow-hidden h-[62vh] min-h-[540px] relative">
+            <div className="absolute inset-0">
+              <Avatar3D patternUrl={patternUrl} shirtColor={shirtColor} />
+            </div>
             <div className="absolute bottom-5 left-5 rounded-3xl border border-ink/10 bg-white/70 px-4 py-2 text-sm text-ink/70">
-              Drag to rotate the rigged model
+              Drag to rotate · studio lighting · knit fabric
             </div>
           </div>
         ) : (
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="glass holo rounded-[2.5rem] p-7">
-              <div className="mb-5 text-sm text-ink/40">Upload a selfie and see the pattern on you.</div>
-              <div className="mb-6 rounded-3xl bg-ink/5 min-h-[14rem] grid place-items-center">
-                {photoUrl ? (
-                  <img src={photoUrl} alt="upload preview" className="max-h-80 object-contain" />
-                ) : (
-                  <span className="text-ink/30">Upload a photo</span>
-                )}
+              <div className="mb-5 text-sm text-ink/40">
+                Drop a photo, browse, or use your camera. Front-facing, good light works best.
               </div>
-              <input
-                ref={fileInput}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(event) => handleUpload(event.target.files?.[0])}
-              />
-              <button
-                onClick={() => fileInput.current?.click()}
-                disabled={!patternUrl}
-                className="btn-neon w-full py-3.5 rounded-xl"
-              >
-                {loading ? "Rendering…" : "Upload photo"}
-              </button>
+
+              {cameraOpen ? (
+                <CameraCapture onCapture={handleUpload} onClose={() => setCameraOpen(false)} />
+              ) : (
+                <>
+                  <div
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setDragging(true);
+                    }}
+                    onDragLeave={() => setDragging(false)}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setDragging(false);
+                      handleUpload(e.dataTransfer.files?.[0]);
+                    }}
+                    onClick={() => fileInput.current?.click()}
+                    className={`mb-6 grid min-h-[14rem] cursor-pointer place-items-center rounded-3xl border-2 border-dashed transition ${
+                      dragging ? "border-neon bg-neon/10" : "border-ink/15 bg-ink/5 hover:border-neon/60"
+                    }`}
+                  >
+                    {photoUrl ? (
+                      <img src={photoUrl} alt="upload preview" className="max-h-72 rounded-2xl object-contain p-2" />
+                    ) : (
+                      <div className="p-8 text-center text-ink/40">
+                        <div className="mb-2 text-3xl">🖼️</div>
+                        <div className="text-sm">
+                          Drag &amp; drop your photo here
+                          <br />
+                          or <span className="text-neon font-semibold">browse files</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    ref={fileInput}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(event) => handleUpload(event.target.files?.[0])}
+                  />
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => fileInput.current?.click()}
+                      disabled={!patternUrl || loading}
+                      className="btn-neon flex-1 rounded-xl py-3.5 text-sm"
+                    >
+                      {loading ? "Rendering…" : photoUrl ? "Change photo" : "Upload photo"}
+                    </button>
+                    <button
+                      onClick={() => setCameraOpen(true)}
+                      disabled={!patternUrl || loading}
+                      className="btn-ghost flex-1 rounded-xl py-3.5 text-sm disabled:opacity-45"
+                    >
+                      📷 Use camera
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {!patternUrl && (
+                <p className="mt-4 text-xs text-ink/40">
+                  Generate a design in the studio above to unlock the try-on.
+                </p>
+              )}
               {error && (
-                <div className="mt-4 rounded-3xl border border-rose-400/20 bg-rose-500/10  px-4 py-3 text-sm text-rose-700">
+                <div className="mt-4 rounded-3xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-700">
                   {error}
                 </div>
               )}
             </div>
+
             <div className="glass holo rounded-[2.5rem] p-7">
-              <div className="mb-5 text-sm text-ink/40">Result</div>
-              <div className="rounded-3xl bg-ink/5 min-h-[22rem] grid place-items-center overflow-hidden">
-                {loading ? (
-                  <div className="text-ink/50">
-                    <div className="mb-4 h-10 w-10 rounded-full border-2 border-cyber/30 border-t-cyber animate-spin mx-auto" />
-                    Rendering preview…
-                  </div>
-                ) : resultUrl ? (
-                  <img src={resultUrl} alt="Try-on result" className="max-h-96 object-contain" />
-                ) : (
-                  <span className="text-ink/30">your result appears here</span>
-                )}
+              <div className="mb-5 flex items-center justify-between text-sm text-ink/40">
+                <span>Result</span>
+                {resultUrl && photoUrl && <span className="text-xs text-ink/35">drag the handle to compare</span>}
               </div>
+              {loading ? (
+                <div className="grid min-h-[22rem] place-items-center rounded-3xl bg-ink/5 text-ink/50">
+                  <div className="text-center">
+                    <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-2 border-neon/30 border-t-neon" />
+                    Draping your design…
+                  </div>
+                </div>
+              ) : resultUrl && photoUrl ? (
+                <CompareSlider before={photoUrl} after={resultUrl} />
+              ) : resultUrl ? (
+                <div className="grid min-h-[22rem] place-items-center overflow-hidden rounded-3xl bg-ink/5">
+                  <img src={resultUrl} alt="Try-on result" className="max-h-96 object-contain" />
+                </div>
+              ) : (
+                <div className="grid min-h-[22rem] place-items-center rounded-3xl bg-ink/5">
+                  <span className="text-ink/30">your result appears here</span>
+                </div>
+              )}
               {resultUrl && (
                 <a
                   href={resultUrl}
